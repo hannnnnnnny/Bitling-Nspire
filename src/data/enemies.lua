@@ -1,0 +1,20 @@
+return {
+    syntax={name="Syntax Moth", hp=22, logic=6, defense=2, focus=2,
+        pattern={"hit","glitch","hit"}, weakness="factor", sprite="syntax",
+        animation="blink", xp=12, drop="patch"},
+    overflow={name="Overflow Bell", hp=30, logic=8, defense=3, focus=3,
+        pattern={"charge","hit","hit"}, weakness="solve", sprite="overflow",
+        animation="idle", xp=18, drop="cell"},
+    variable={name="Variable Wisp", hp=34, logic=9, defense=4, focus=4,
+        pattern={"drain","hit","glitch"}, weakness="factor", sprite="variable",
+        animation="blink", xp=22, drop="tonic"},
+    loop={name="Loop Knot", hp=40, logic=10, defense=3, focus=4,
+        pattern={"hit","hit","charge"}, weakness="solve", sprite="loop",
+        animation="idle", xp=25, drop="treat"},
+    leak={name="Memory Drip", hp=44, logic=11, defense=5, focus=4,
+        pattern={"siphon","drain","hit"}, weakness="factor", sprite="leak",
+        animation="idle", xp=28, drop="root"},
+    sentinel={name="Null Sentinel", hp=106, logic=13, defense=7, focus=6,
+        pattern={"charge","hit","glitch","drain","siphon"}, weakness="solve",
+        sprite="sentinel", animation="blink", xp=70, drop="core", boss=true}
+}
