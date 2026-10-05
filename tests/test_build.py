@@ -3,10 +3,20 @@ import os
 import subprocess
 import sys
 import unittest
+from unittest.mock import patch
 from build import ROOT,bundle
 
 
 class BuildTests(unittest.TestCase):
+    def test_luna_receives_ascii_relative_filenames(self):
+        from build import main
+        with patch("sys.argv",["build.py","--luna","mock-luna.exe"]):
+            with patch("build.subprocess.run") as run:
+                main()
+        args, kwargs = run.call_args
+        self.assertEqual(args[0][1:],["mote.lua","mote.tns"])
+        self.assertEqual(kwargs["cwd"],ROOT/"build")
+
     def test_non_ascii_workspace_build_with_legacy_console_encoding(self):
         env=dict(os.environ,PYTHONIOENCODING="cp1252")
         result=subprocess.run([sys.executable,str(ROOT/"tools/build.py")],

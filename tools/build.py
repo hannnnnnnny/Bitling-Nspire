@@ -34,8 +34,9 @@ def main():
     script.write_text(bundle(), encoding="utf-8", newline="\n")
     print(f"Built build/{script.name} ({script.stat().st_size} bytes)")
     if args.luna:
-        subprocess.run([str(args.luna.resolve()), str(script), str(out / "mote.tns")],
-                       check=True)
+        # Older Windows Luna uses narrow fopen; keep file arguments ASCII.
+        subprocess.run([str(args.luna.resolve()), script.name, "mote.tns"],
+                       cwd=out, check=True)
         print("Packaged build/mote.tns; TI device open still requires verification")
 
 
