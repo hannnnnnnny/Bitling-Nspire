@@ -3,6 +3,7 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+.venv/
 build/
 simulator-save.json
 simulator-save.json.tmp
