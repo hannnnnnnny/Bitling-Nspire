@@ -27,6 +27,7 @@ The script window is smaller than the physical screen because TI draws document 
 * Fixed timer interval: 0.1 seconds (10 requested updates/sec). Actual hardware repaint rate must be measured; this is not a measured FPS.
 * 16×11 maps, compact ASCII rows, 16 px tiles; no scrolling in MVP.
 * 12×12 sprites, compiled to colored horizontal runs once; integer drawing coordinates.
+* Fonts restricted to Gen 1's documented 7, 9, 10, 11, 12 and 24 point sizes; body text 9–11 points.
 * No image buffers or texture decoding, physics, audio, pathfinding, LLM, background threads.
 * Budget: source under 128 KiB, game data and sprite cache under 256 KiB estimated, state under 8 KiB, total Lua heap target under 2 MiB. Host collectgarbage measures Lua heap but cannot establish TI's overhead.
 * Static screens repaint on input or pet-frame change; world only visible tiles are drawn. No table construction in the sprite drawing loop.
