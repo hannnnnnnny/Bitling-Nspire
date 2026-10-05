@@ -5,6 +5,19 @@ import unittest
 
 
 class HostTests(unittest.TestCase):
+    def test_text_stays_within_calculator_viewports(self):
+        from gallery import scene
+        for width,height in ((318,212),(320,240)):
+            for mode in ("HOME","PET","WORLD","BATTLE","MENU","INVENTORY",
+                         "STATUS","SAVE","DIALOGUE"):
+                app=scene(mode,width,height)
+                app.paint()
+                for text,x,y,bbox in app.gc.texts:
+                    self.assertGreaterEqual(x,0,(mode,text))
+                    self.assertGreaterEqual(y,0,(mode,text))
+                    self.assertLessEqual(x+bbox[2]-bbox[0],width,(mode,text))
+                    self.assertLessEqual(y+bbox[3]-bbox[1],height,(mode,text))
+
     def test_callbacks_render_and_save_roundtrip(self):
         from host import Application
         app = Application(318,212)
