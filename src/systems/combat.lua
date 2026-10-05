@@ -67,7 +67,7 @@ local function playerAction(b, action, id)
         local power = 8+p.level+math.floor(b.state.pet.bond/25)
         b.message = "Pulse: "..damage(b,power).." damage."
     elseif action == "skill" then
-        if not Skills[id] then return false end
+        if not Skills.get(id) then return false end
         if p.energy < Skills[id].cost then
             b.message = "Not enough energy. Use a cell."
             return false

@@ -16,6 +16,7 @@ class CombatTests(unittest.TestCase):
         self.assertFalse(self.combat.act(battle, "skill", "solve"))
         self.assertEqual(battle.turn, 0)
         self.assertFalse(self.combat.act(battle, "skill", "unknown"))
+        self.assertFalse(self.combat.act(battle, "skill", "order"))
         self.assertFalse(self.combat.act(battle, "item", "core"))
 
     def test_skills_have_distinct_effects(self):
