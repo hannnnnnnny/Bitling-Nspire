@@ -14,7 +14,7 @@ local maps = {
               "#..............#", "#..............#", "#..............#",
               "#####..###..####", "#.....~~~~.....#", "#.....~~~~.....#",
               "#..............#", "################"},
-        objects=objects("ada", "forest", "seed"),
+        objects=objects("ada", "forest", "root"),
         portals={{x=15,y=5,map="valley",tx=3,ty=5}},
         encounters={"syntax", "overflow"}
     },
