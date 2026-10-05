@@ -14,7 +14,7 @@ class BuildTests(unittest.TestCase):
             with patch("build.subprocess.run") as run:
                 main()
         args, kwargs = run.call_args
-        self.assertEqual(args[0][1:],["mote.lua","mote.tns"])
+        self.assertEqual(args[0][1:],["bitling.lua","bitling.tns"])
         self.assertEqual(kwargs["cwd"],ROOT/"build")
 
     def test_non_ascii_workspace_build_with_legacy_console_encoding(self):
@@ -22,7 +22,7 @@ class BuildTests(unittest.TestCase):
         result=subprocess.run([sys.executable,str(ROOT/"tools/build.py")],
                               cwd=ROOT,env=env,capture_output=True)
         self.assertEqual(result.returncode,0,result.stderr.decode("ascii",errors="replace"))
-        self.assertTrue((ROOT/"build/mote.lua").is_file())
+        self.assertTrue((ROOT/"build/bitling.lua").is_file())
 
     def test_bundle_is_deterministic_compact_and_has_no_device_filesystem_calls(self):
         source=bundle()

@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def bundle(entry=True):
-    parts = ["-- Mote: Memory Garden | stock TI-Nspire CX CAS | API 2.0",
+    parts = ["-- Bitling-Nspire: Memory Garden | stock TI-Nspire CX CAS | API 2.0",
              'platform.apiLevel = "2.0"' if entry else "",
              "local factories, loaded = {}, {}",
              "local function require(name)",
@@ -30,14 +30,14 @@ def main():
     args = parser.parse_args()
     out = ROOT / "build"
     out.mkdir(exist_ok=True)
-    script = out / "mote.lua"
+    script = out / "bitling.lua"
     script.write_text(bundle(), encoding="utf-8", newline="\n")
     print(f"Built build/{script.name} ({script.stat().st_size} bytes)")
     if args.luna:
         # Older Windows Luna uses narrow fopen; keep file arguments ASCII.
-        subprocess.run([str(args.luna.resolve()), script.name, "mote.tns"],
+        subprocess.run([str(args.luna.resolve()), script.name, "bitling.tns"],
                        cwd=out, check=True)
-        print("Packaged build/mote.tns; TI device open still requires verification")
+        print("Packaged build/bitling.tns; TI device open still requires verification")
 
 
 if __name__ == "__main__":
