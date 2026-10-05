@@ -32,11 +32,11 @@ def main():
     out.mkdir(exist_ok=True)
     script = out / "mote.lua"
     script.write_text(bundle(), encoding="utf-8", newline="\n")
-    print(f"Built {script} ({script.stat().st_size} bytes)")
+    print(f"Built build/{script.name} ({script.stat().st_size} bytes)")
     if args.luna:
         subprocess.run([str(args.luna.resolve()), str(script), str(out / "mote.tns")],
                        check=True)
-        print(f"Packaged {out / 'mote.tns'}; TI device open still requires verification")
+        print("Packaged build/mote.tns; TI device open still requires verification")
 
 
 if __name__ == "__main__":
