@@ -37,6 +37,7 @@ class SaveTests(unittest.TestCase):
         raw.flags.boss = "true"
         raw.inventory.patch = -10
         raw.inventory.bad = 3
+        raw.inventory.order = 1
         raw.x, raw.y = 1, 1
         raw.seed = float("inf")
         state, notice = self.save.decode(raw)
@@ -44,6 +45,7 @@ class SaveTests(unittest.TestCase):
         self.assertEqual(state.pet.bond,10)
         self.assertEqual(state.pet.mood,"idle")
         self.assertIsNone(state.inventory.bad)
+        self.assertIsNone(state.inventory.order)
         self.assertEqual((state.x,state.y),(3,5))
         self.assertFalse(state.flags.boss)
         self.assertTrue(notice)

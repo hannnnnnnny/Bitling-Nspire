@@ -42,7 +42,7 @@ local function inventory(raw, state, report)
     if type(raw.inventory) ~= "table" then report.bad=true; return end
     state.inventory = {}
     for id,value in pairs(raw.inventory) do
-        if Items[id] then
+        if Items.get(id) then
             local count = number(value,0,0,99,true,report)
             if count > 0 then state.inventory[id] = count end
         else report.bad=true end

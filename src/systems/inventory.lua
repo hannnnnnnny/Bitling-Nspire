@@ -2,7 +2,7 @@ local Items = require("data.items")
 local Inventory = {}
 
 function Inventory.add(state, id, count)
-    if not Items[id] or type(count) ~= "number" or count ~= count
+    if not Items.get(id) or type(count) ~= "number" or count ~= count
         or count < 1 or count > 100000 or count % 1 ~= 0 then return false end
     state.inventory[id] = math.min(99, (state.inventory[id] or 0) + count)
     return true
@@ -24,7 +24,7 @@ local function apply(state, item, battle)
 end
 
 function Inventory.use(state, id, battle)
-    local item = Items[id]
+    local item = Items.get(id)
     if not item or not state.inventory[id] or state.inventory[id] < 1 then
         return false, "You do not have that item."
     end

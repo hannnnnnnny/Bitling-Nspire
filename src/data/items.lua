@@ -1,4 +1,4 @@
-return {
+local Items = {
     order={"patch","cell","root","tonic","shield","lens","treat","fragment","core","seed"},
     patch={name="Byte Patch", kind="heal", amount=24, description="Restore 24 HP."},
     cell={name="Charge Cell", kind="energy", amount=16, description="Restore 16 energy."},
@@ -11,3 +11,12 @@ return {
     core={name="Quiet Core", kind="key", description="The sentinel is at peace."},
     seed={name="Memory Seed", kind="key", description="A garden's new beginning."}
 }
+
+function Items.get(id)
+    if type(id) ~= "string" then return nil end
+    local item=Items[id]
+    if type(item)=="table" and item.kind then return item end
+    return nil
+end
+
+return Items

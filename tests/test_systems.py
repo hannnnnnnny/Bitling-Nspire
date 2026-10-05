@@ -13,6 +13,9 @@ class InventoryProgressionTests(unittest.TestCase):
     def test_item_catalogue_and_validation(self):
         self.assertEqual(len(self.items.order), 10)
         self.assertFalse(self.inventory.add(self.state, "bogus", 1))
+        self.assertFalse(self.inventory.add(self.state, "order", 1))
+        self.state.inventory.order = 1
+        self.assertFalse(self.inventory.use(self.state, "order")[0])
         self.assertFalse(self.inventory.add(self.state, "patch", -1))
         self.assertFalse(self.inventory.add(self.state, "patch", 1.5))
         self.inventory.add(self.state, "patch", 999)
