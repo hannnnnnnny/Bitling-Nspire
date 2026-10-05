@@ -1,0 +1,8 @@
+.devdeps/
+.tools/
+__pycache__/
+*.pyc
+.pytest_cache/
+build/
+simulator-save.json
+simulator-save.json.tmp
