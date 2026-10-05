@@ -37,10 +37,10 @@ function Battle.paint(game,w)
     w:text("Energy "..state.player.energy.." / "..state.player.maxEnergy,12,99,"amber",9)
     if b.revealed then
         w:text("DEF "..b.defense.." / weak "..Skills[b.enemy.weakness].name,
-            w.w-145,99,"violet",8,133)
+            w.w-145,99,"violet",7,133)
     end
     w:text(b.message,12,110,"text",9,w.w-24)
-    w:text(b.reply,12,125,"dim",8,w.w-24)
+    w:text(b.reply,12,125,"dim",7,w.w-24)
     if b.done then
         local message=b.done=="won" and ("+"..b.enemy.xp.." XP  /  "..Items[b.enemy.drop].name)
             or (b.done=="lost" and "Mote needs a recovery terminal." or "Back to the garden.")

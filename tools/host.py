@@ -27,6 +27,8 @@ class Graphics:
         self.color=(int(r),int(g),int(b))
 
     def setFont(self,_gc,family,style,size):
+        if family not in ("sansserif","serif") or size not in (7,9,10,11,12,24):
+            raise ValueError("Font is outside the Gen1 TI-Nspire supported set")
         pixels=max(8,int(size*1.3))
         if pixels not in self.fonts:
             candidates=("C:/Windows/Fonts/segoeui.ttf",

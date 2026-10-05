@@ -15,7 +15,7 @@ function Details.inventory(game,w)
         local item=Items[game.list[game.selected]]
         w:text(item.description,12,w.h-59,"amber",9)
     end
-    w:text(game.message,12,w.h-38,"dim",8)
+    w:text(game.message,12,w.h-38,"dim",7)
     w:footer("Arrows: choose    Enter: use    Esc: back")
 end
 

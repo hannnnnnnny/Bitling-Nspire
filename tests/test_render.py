@@ -10,7 +10,10 @@ class RenderTests(unittest.TestCase):
         gc = lua.execute("""
             local gc={calls=0}
             function gc:setColorRGB(r,g,b) assert(r and g and b) end
-            function gc:setFont(f,s,n) assert(f=="sansserif" and n>=6 and n<=212) end
+            function gc:setFont(f,s,n)
+                local sizes={[7]=true,[9]=true,[10]=true,[11]=true,[12]=true,[24]=true}
+                assert(f=="sansserif" and sizes[n], "Unsupported Gen1 font size")
+            end
             function gc:fillRect(x,y,w,h) assert(w>=0 and h>=0); self.calls=self.calls+1 end
             function gc:drawRect(x,y,w,h) assert(w>=0 and h>=0); self.calls=self.calls+1 end
             function gc:drawString(s,x,y,a) assert(type(s)=="string"); self.calls=self.calls+1 end

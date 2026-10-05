@@ -3,7 +3,7 @@ local Home = {}
 
 function Home.home(game,w)
     w:header("BITLING / MEMORY GARDEN","Lv."..game.data.player.level)
-    w:text("A LIFE BEHIND THE NUMBERS",12,32,"dim",8)
+    w:text("A LIFE BEHIND THE NUMBERS",12,32,"dim",7)
     w:sprite(Animation.frame(game.data.pet.mood,game.tick),38,60,6)
     w:text("MOTE",58,139,"mint",11,90)
     w:text(game.data.pet.mood,40,156,"dim",9,110)
