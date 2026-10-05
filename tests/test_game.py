@@ -39,6 +39,21 @@ class GameTests(unittest.TestCase):
                         queue.append(n)
         self.fail("No route")
 
+    def fight_boss(self):
+        b = self.game.battle
+        for _ in range(80):
+            if b.done:
+                break
+            if self.game.data.player.hp < 18 and self.game.data.inventory.patch:
+                self.game.perform(self.game,"item","patch")
+            elif self.game.data.player.energy >= 5:
+                self.game.perform(self.game,"skill","solve")
+            elif self.game.data.inventory.cell:
+                self.game.perform(self.game,"item","cell")
+            else:
+                self.game.perform(self.game,"attack",None)
+        self.assertEqual(b.done,"won")
+
     def test_complete_campaign_via_input(self):
         self.assertEqual(self.game.mode,"HOME")
         self.key("ENTER")
@@ -59,19 +74,7 @@ class GameTests(unittest.TestCase):
         self.travel(12,5)
         self.key("ENTER")
         self.assertEqual(self.game.mode,"BATTLE")
-        b = self.game.battle
-        for _ in range(80):
-            if b.done:
-                break
-            if self.game.data.player.hp < 18 and self.game.data.inventory.patch:
-                self.game.perform(self.game,"item","patch")
-            elif self.game.data.player.energy >= 5:
-                self.game.perform(self.game,"skill","solve")
-            elif self.game.data.inventory.cell:
-                self.game.perform(self.game,"item","cell")
-            else:
-                self.game.perform(self.game,"attack",None)
-        self.assertEqual(b.done,"won")
+        self.fight_boss()
         self.assertTrue(self.game.data.flags.boss)
         self.key("ENTER")
         for _ in range(2):
