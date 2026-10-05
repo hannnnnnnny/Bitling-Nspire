@@ -28,7 +28,8 @@ class HostTests(unittest.TestCase):
         from host import Application
         with tempfile.TemporaryDirectory() as name:
             path = Path(name)/"game.json"
-            for raw in ("broken"," "*40000,'{"version":1,"seed":NaN}'):
+            for raw in ("broken"," "*40000,'{"version":1,"seed":NaN}',
+                        '{"version":1,"player":{"level":9223372036854775808}}'):
                 path.write_text(raw,"utf-8")
                 app=Application()
                 self.assertFalse(app.load(path))

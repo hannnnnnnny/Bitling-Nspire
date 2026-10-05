@@ -140,7 +140,7 @@ class Application:
             if not isinstance(data,dict):
                 raise ValueError("Save must be a JSON object")
             self.on.restore(self.lua.table_from(data,recursive=True))
-        except (OSError,ValueError,RecursionError):
+        except (OSError,ValueError,OverflowError,RecursionError):
             self.on.restore("Unreadable simulator save")
             self.invalidate()
             return False
